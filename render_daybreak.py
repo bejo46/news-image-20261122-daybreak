@@ -2,7 +2,7 @@
 """Render THE DAYBREAK LEDGER v2 — @topan-kun's poster for news-image-20261122.
 
 Dark-broadsheet one-page summary of Sunday 22 November 2026, breadth build:
-a Hormuz hero across the top, a six-number strip, TWELVE illustrated story
+a Hormuz hero across the top, a six-detail strip, TWELVE illustrated story
 cards in a 3x4 grid (scene strip on top, large headline below), an ALSO
 TODAY strip with four more one-line stories, region chips, a DATE CHECK box.
 17 stories, 7 regions. Every fact comes from the verified ledger in
@@ -36,7 +36,7 @@ SANS_B   = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
 SANS     = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
 SANS_O   = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Oblique.ttf"
 
-VERIFIED_STAMP = "Verified at 23:09 WIB"   # build-time constant, set at final build
+VERIFIED_STAMP = "WIRE-CHECKED · 22 NOV 2026"   # build-time constant, set at final build
 
 _fonts = {}
 def font(path, size):
@@ -169,12 +169,12 @@ d.text((HX1 - 84, SCENE_BOT + 86), "tankers hit", font=font(SANS_B, 11),
 SY0, SY1 = 312, 358
 d.rectangle([MARGIN, SY0, W - MARGIN, SY1], fill=PANEL, outline=EDGE)
 NUMBERS = [
-    ("3", "tankers hit in Hormuz"),
-    ("0", "fossil-fuel mentions"),
-    ("39", "missing in the factory fire"),
-    ("7,641", "Taiwan stocks plunge, points"),
-    ("100,000", "young Europeans a year"),
-    ("5,700", "Ebola deaths in DR Congo"),
+    ("114–91", "Spurs beat the Pelicans"),
+    ("8", "regions struck in Yemen"),
+    ("2", "wounded in Bahrain"),
+    ("3 DAYS", "Pugh's swim across Hormuz"),
+    ("LONGEST", "COP31 summit in history"),
+    ("FIRST", "pilotless air-taxi riders"),
 ]
 cell_w = CW / 6
 for i, (num, lab) in enumerate(NUMBERS):
@@ -376,18 +376,18 @@ def scene_pugh(x, y, w, h):
 # ---------------------------------------------------------------- cards
 # (region, headline, source, number, scene) — 12 cards, 3 cols x 4 rows
 CARDS = [
-    ("GLOBAL", "COP31 TALKS COLLAPSE", "Reuters · WRI", "0", scene_cop31),
-    ("ASIA-PACIFIC", "SERANG FACTORY FIRE", "Reuters · AP · AFP", "39", scene_fire),
-    ("ASIA-PACIFIC", "TAIWAN STOCKS PLUNGE", "wires", "7,641", scene_chart),
-    ("EUROPE", "BRITAIN OPENS TO EU YOUTH", "wires · BBC", "100,000", scene_flags),
-    ("NORTH AMERICA", "VERSTAPPEN WINS IN VEGAS", "BBC", "34", scene_f1),
-    ("NORTH AMERICA", "WEMBANYAMA SCORES 50", "BBC", "50", scene_hoop),
-    ("MIDDLE EAST", "AID WORKERS KILLED IN GAZA", "wires", "3", scene_aid),
-    ("AFRICA", "EBOLA TOLL PASSES 5,700", "wires", "5,700", scene_ebola),
-    ("MIDDLE EAST", "70+ RAIDS HIT YEMEN", "wires", "70+", scene_yemen),
-    ("ASIA-PACIFIC", "EU–INDONESIA TRADE DEAL", "wires", "10 yrs", scene_trade),
-    ("GLOBAL", "PUGH SWIMS THE STRAIT", "wires", "15 km", scene_pugh),
-    ("LATIN AMERICA", "BRAZIL TOWN DIGS OUT", "wires", None, scene_brazil),
+    ("GLOBAL", "COP31 TALKS COLLAPSE", "Reuters · WRI", "0 FOSSIL-FUEL MENTIONS", scene_cop31),
+    ("ASIA-PACIFIC", "SERANG FACTORY FIRE", "Reuters · AP · AFP", "39 MISSING", scene_fire),
+    ("ASIA-PACIFIC", "TAIWAN STOCKS PLUNGE", "wires", "7,641 PTS — WEEK", scene_chart),
+    ("EUROPE", "BRITAIN OPENS TO EU YOUTH", "wires · BBC", "100,000 A YEAR", scene_flags),
+    ("NORTH AMERICA", "VERSTAPPEN WINS IN VEGAS", "BBC", "34 LEAD CHANGES", scene_f1),
+    ("NORTH AMERICA", "WEMBANYAMA SCORES 50", "BBC", "50 PTS", scene_hoop),
+    ("MIDDLE EAST", "AID WORKERS KILLED IN GAZA", "wires", "3 KILLED", scene_aid),
+    ("AFRICA", "EBOLA TOLL PASSES 5,700", "wires", "5,700 DEATHS", scene_ebola),
+    ("MIDDLE EAST", "70+ RAIDS HIT YEMEN", "wires", "70+ RAIDS", scene_yemen),
+    ("ASIA-PACIFIC", "EU–INDONESIA TRADE DEAL", "wires", "10 YRS OF TALKS", scene_trade),
+    ("GLOBAL", "PUGH SWIMS THE STRAIT", "wires", "15 KM SWIM", scene_pugh),
+    ("LATIN AMERICA", "BRAZIL TOWN DIGS OUT", "wires", "CLEAN-UP BEGINS", scene_brazil),
 ]
 GRID_Y = 366
 CARD_W, CARD_H, GAP = 318, 110, 11
@@ -408,7 +408,7 @@ for idx, (region, head, src, num, scene) in enumerate(CARDS):
                  x + CARD_W - 1, y + 17], fill=(10, 16, 30))
     d.text((x + CARD_W - 7, y + 4), src, font=font(SANS_O, 9), fill=MUTED, anchor="ra")
     if num:
-        chip_number(d, x + CARD_W - 76, y + SCENE_H - 21, 68, 24, num, size=15)
+        chip_number(d, x + CARD_W - 164, y + SCENE_H - 21, 156, 24, num, size=12)
     # headline: largest size 28..20 whose wrap fits 2 lines in the zone below
     zone_w = CARD_W - 20
     hsize = 28
